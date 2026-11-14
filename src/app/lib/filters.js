@@ -13,6 +13,18 @@ export const PRICE_LIMITS = [110, 200, 300, 400];
 
 const SORTS = ["destacados", "precio-asc", "precio-desc", "nombre"];
 
+// Última URL que escribió el propio catálogo al filtrar. Sirve para distinguir
+// esos cambios de los que llegan desde un enlace del menú.
+let lastWrittenQuery = null;
+
+export function markWrittenByExplorer(query) {
+  lastWrittenQuery = query;
+}
+
+export function wasWrittenByExplorer(query) {
+  return query === lastWrittenQuery;
+}
+
 /** Convierte los parámetros de la URL en filtros válidos (ignora valores raros). */
 export function parseFilters(params) {
   const get = (key) => {

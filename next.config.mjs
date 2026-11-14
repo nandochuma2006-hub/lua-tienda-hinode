@@ -1,5 +1,10 @@
 const nextConfig = {
-  /* config options here */
+  // Genera la página como archivos estáticos (carpeta "out") para publicarla en Cloudflare Pages.
+  output: "export",
+  images: {
+    // Cloudflare Pages no ejecuta el optimizador de imágenes de Next.js.
+    unoptimized: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

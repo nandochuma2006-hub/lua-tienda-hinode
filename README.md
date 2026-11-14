@@ -4,6 +4,8 @@ Proyecto final de **Programación Web**: tienda en línea para una emprendedora 
 
 La página muestra los productos del catálogo Hinode **Ciclo 04 · Campaña Navidad (noviembre 2026)** con fotos, códigos y precios en bolivianos, y permite armar un pedido que se envía por WhatsApp en un solo mensaje.
 
+🌐 **Página publicada:** https://lua-tienda-hinode.pages.dev
+
 ## Funcionalidades
 
 - **Página principal:** categorías, oferta destacada, favoritos, "Encuentra tu aroma", ideas de regalo y pasos para pedir.
@@ -27,6 +29,10 @@ npm run dev
 ```
 
 Luego abrir [http://localhost:3000](http://localhost:3000).
+
+## Publicación
+
+El proyecto se exporta como sitio estático (`output: "export"` en `next.config.mjs`). Al ejecutar `npm run build` se genera la carpeta `out`, que se publica en **Cloudflare Pages**.
 
 ## Configuración
 

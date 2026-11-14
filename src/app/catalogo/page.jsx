@@ -1,16 +1,15 @@
+import { Suspense } from "react";
 import CatalogExplorer from "../components/CatalogExplorer";
+import CatalogFromUrl from "../components/CatalogFromUrl";
 import { TIENDA } from "../config/tienda";
-import { parseFilters } from "../lib/filters";
+import { EMPTY_FILTERS } from "../lib/filters";
 
 export const metadata = {
   title: "Catálogo",
   description: `Todos los productos Hinode del ${TIENDA.ciclo}: busca por nombre, aroma, precio o categoría.`,
 };
 
-export default async function CatalogoPage(props) {
-  const searchParams = await props.searchParams;
-  const initial = parseFilters(searchParams);
-
+export default function CatalogoPage() {
   return (
     <>
       <section className="page-head">
@@ -25,8 +24,10 @@ export default async function CatalogoPage(props) {
       </section>
 
       <section className="section section--tight">
-        {/* La key reinicia los filtros cuando se llega desde otro enlace del menú. */}
-        <CatalogExplorer key={JSON.stringify(initial)} initial={initial} />
+        {/* Mientras se leen los filtros de la URL se muestra el catálogo completo. */}
+        <Suspense fallback={<CatalogExplorer initial={EMPTY_FILTERS} />}>
+          <CatalogFromUrl />
+        </Suspense>
       </section>
     </>
   );

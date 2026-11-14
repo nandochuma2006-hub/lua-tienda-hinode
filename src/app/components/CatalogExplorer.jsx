@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { CATEGORIES, FAMILIES, PRODUCTS } from "../data/products";
-import { EMPTY_FILTERS, PRICE_LIMITS } from "../lib/filters";
+import { EMPTY_FILTERS, markWrittenByExplorer, PRICE_LIMITS } from "../lib/filters";
 import { normalize } from "../lib/format";
 import ProductCard from "./ProductCard";
 
@@ -59,6 +59,7 @@ function syncUrl(f) {
   if (f.max) params.set("max", String(f.max));
   if (f.orden !== "destacados") params.set("orden", f.orden);
   const query = params.toString();
+  markWrittenByExplorer(query);
   window.history.replaceState(null, "", query ? `/catalogo?${query}` : "/catalogo");
 }
 
